@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Jungle Mist Resort — Rishikesh</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom Tailwind config-like utilities */
+    :root{
+      --primary: #000B16; /* Deep Blue */
+      --secondary: #D4AF37; /* Royal Golden */
+      --cream: #F5F5F5;
+      --charcoal: #222222;
+    }
+
+    /* Floating talentronaut icon animation */
+    @keyframes floaty { 0%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } 100%{ transform: translateY(0) } }
+
+    .floating-icon{ animation: floaty 3s ease-in-out infinite; }
+
+    /* Soft glass card */
+    .glass{ background: rgba(245,245,245,0.06); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.04); }
+
+    /* simple fade-in */
+    .reveal{ opacity: 0; transform: translateY(12px); transition: all .6s cubic-bezier(.2,.9,.3,1); }
+    .reveal.show{ opacity: 1; transform: translateY(0); }
+
+    /* image object cover fallback */
+    .obj-cover{ object-fit: cover; }
+
+    /* subtle underline animation for nav */
+    .nav-underline{ position: relative; }
+    .nav-underline::after{ content: ''; position: absolute; left: 0; bottom: -6px; height: 3px; width: 0; background: var(--secondary); transition: width .25s ease; border-radius: 3px; }
+    .nav-underline:hover::after, .nav-underline.active::after{ width: 100%; }
+
+    /* simple responsive container for hero image height */
+    .hero-height{ height: min(75vh, 720px); }
+
+    /* tiny utility to visually hide but accessible */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body class="antialiased text-gray-100 bg-gradient-to-b from-[#061017] via-[#071826] to-[#071826]"> 
+
+  <!-- TOP NAV -->
+  <header class="w-full fixed top-0 left-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="#" class="flex items-center gap-3">
+          <!-- logo: keep attached image as 'logo-attached.png' in your assets folder -->
+          <img src="main logo.jpeg" alt="The Jungle Mist Resort" class="w-14 h-14 rounded-md object-cover shadow-sm bg-white/5" />
+          <div class="hidden sm:block">
+            <h1 class="text-white font-playfair text-xl">The Jungle Mist</h1>
+            <p class="text-xs text-gray-300">Resort • Rishikesh</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a class="nav-underline" href="#about">About</a>
+          <a class="nav-underline" href="#rooms">Rooms</a>
+          <a class="nav-underline" href="#experiences">Experiences</a>
+          <a class="nav-underline" href="#gallery">Gallery</a>
+          <a class="nav-underline" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button id="bookNowTop" class="px-4 py-2 rounded-md bg-gradient-to-r from-[#0b1220] to-[#071826] border border-[#D4AF37] hover:scale-105 transition-transform text-[#D4AF37] text-sm">Check Availability</button>
+
+          <button id="menuBtn" class="md:hidden p-2 rounded-md bg-white/5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileNav" class="md:hidden bg-[#02050a] border-t border-white/5 hidden">
+      <div class="px-4 pt-4 pb-6 space-y-3">
+        <a href="#about" class="block py-2">About</a>
+        <a href="#rooms" class="block py-2">Rooms</a>
+        <a href="#experiences" class="block py-2">Experiences</a>
+        <a href="#gallery" class="block py-2">Gallery</a>
+        <a href="#contact" class="block py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+<!-- Add this in <head> for AOS animations -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<main class="pt-24 scroll-smooth">
+  <section class="relative overflow-hidden min-h-[80vh] md:min-h-[90vh]">
+    <!-- Background Image -->
+    <picture class="absolute inset-0 -z-10">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b0e2f5b5c0f0d2b8b6a3a2a2d9a6cdb" 
+           alt="forest resort" 
+           class="w-full h-full object-cover brightness-[0.45]" />
+    </picture>
+
+    <!-- Hero Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Left Content -->
+        <div class="flex flex-col justify-center gap-6" data-aos="fade-right" data-aos-duration="1200">
+          <div class="glass p-3 rounded-md inline-block text-sm text-amber-400 font-medium">
+            Nature • Luxury • Tranquility
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-playfair leading-tight text-white">
+            Welcome to <span class="text-[#D4AF37]">The Jungle Mist</span>
+          </h1>
+
+          <p class="text-gray-200 max-w-xl">
+            A nature-inspired retreat in Rishikesh offering luxurious cottages, curated experiences, and personalised hospitality — where nature and comfort meet in harmony.
+          </p>
+
+          <div class="flex gap-3">
+            <button id="heroBook" class="px-6 py-3 rounded-md bg-[#D4AF37] text-[#05060a] font-semibold hover:scale-105 transition">
+              Book Now
+            </button>
+            <a href="#experiences" class="px-4 py-3 rounded-md border border-white/10 text-sm hover:bg-white/10 transition">
+              Explore Experiences
+            </a>
+          </div>
+
+          <div class="mt-4 flex items-center gap-4 text-sm text-gray-300">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-300" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 2a1 1 0 00-.894.553L7.382 6H3a1 1 0 000 2h3.382l1.724 3.447A1 1 0 0010 12a1 1 0 00.894-.553L12.618 8H17a1 1 0 100-2h-3.382L12.382 2.553A1 1 0 0011 2H10z"/>
+              </svg>
+              <span>Free parking • Swimming pool • Trekking trails</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Booking Form -->
+        <div class="hidden md:flex items-center justify-center" data-aos="fade-left" data-aos-duration="1200">
+          <div class="w-full p-4 rounded-2xl glass">
+            <h3 class="text-xl font-semibold font-playfair">Check availability</h3>
+            <p class="text-xs text-gray-300">Instantly search dates and room types.</p>
+
+            <form id="quickBooking" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input required name="checkin" type="date" class="p-3 rounded-md bg-transparent border border-white/6" />
+              <input required name="checkout" type="date" class="p-3 rounded-md bg-transparent border border-white/6" />
+              <select name="guests" class="p-3 rounded-md bg-transparent border border-white/6">
+                <option value="1">1 guest</option>
+                <option value="2">2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+              </select>
+              <select name="room" class="p-3 rounded-md bg-transparent border border-white/6">
+                <option value="cottage">Cottage - King</option>
+                <option value="deluxe">Deluxe Room</option>
+                <option value="family">Family Cabin</option>
+              </select>
+              <button type="submit" class="col-span-1 sm:col-span-2 px-4 py-3 rounded-md bg-[#D4AF37] text-[#05060a] font-semibold">
+                Check
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    once: true, // Animations occur only once
+  });
+</script>
+
+<style>
+  html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  }
+</style>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal" data-reveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-3xl font-playfair text-white">About The Jungle Mist</h3>
+          <p class="mt-4 text-gray-300">The Jungle Mist Resort is crafted for those who seek effortless comfort wrapped in nature. Nestled in the hills of Rishikesh, our cottages and cabins blend tasteful luxury with environmental sensitivity. From morning bird songs to star-filled nights around the bonfire, every moment is curated to be memorable.</p>
+
+          <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-300">
+            <li class="flex gap-3 items-start">
+              <div class="w-10 h-10 rounded-md bg-[#D4AF37]/10 grid place-items-center text-[#D4AF37]">✓</div>
+              <div>
+                <div class="font-semibold text-white">Sustainable Practices</div>
+                <div class="text-xs">Solar energy, waste reduction & locally sourced produce.</div>
+              </div>
+            </li>
+            <li class="flex gap-3 items-start">
+              <div class="w-10 h-10 rounded-md bg-[#D4AF37]/10 grid place-items-center text-[#D4AF37]">✓</div>
+              <div>
+                <div class="font-semibold text-white">Personalised Hospitality</div>
+                <div class="text-xs">Tailored experiences and attentive staff.</div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="mt-6 flex gap-3">
+            <a href="#gallery" class="px-4 py-2 rounded-md border border-white/10">View Gallery</a>
+            <a href="#contact" class="px-4 py-2 rounded-md bg-white/5">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <img src="cottageexe.jpg" alt="cottage exterior" class="w-full h-96 obj-cover"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROOMS / COTTAGES -->
+    <section id="rooms" class="bg-[#031018] py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          <h3 class="text-3xl font-playfair">Stay & Rooms</h3>
+          <p class="text-sm text-gray-400">Comfortable stays with nature views</p>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Room card 1 -->
+          <article class="rounded-2xl overflow-hidden glass shadow-md">
+            <img src="cottage.jpg" alt="cottage room" class="w-full h-56 obj-cover"/>
+            <div class="p-5">
+              <h4 class="font-semibold text-white text-lg">Cottage - King</h4>
+              <p class="text-sm text-gray-300 mt-2">Private cottage with king-size bed, private patio and forest view.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div>
+                  <div class="text-sm text-gray-400">Starting from</div>
+                  <div class="font-semibold text-white">₹5,499 / night</div>
+                </div>
+                <button class="px-3 py-2 rounded-md bg-[#D4AF37] text-[#05060a]" onclick="openBookingModal('Cottage - King')">Book</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room card 2 -->
+          <article class="rounded-2xl overflow-hidden glass shadow-md">
+            <img src="deluxe.png" alt="deluxe room" class="w-full h-56 obj-cover"/>
+            <div class="p-5">
+              <h4 class="font-semibold text-white text-lg">Deluxe Room</h4>
+              <p class="text-sm text-gray-300 mt-2">Comfortable room with modern amenities and private bath.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div>
+                  <div class="text-sm text-gray-400">Starting from</div>
+                  <div class="font-semibold text-white">₹3,199 / night</div>
+                </div>
+                <button class="px-3 py-2 rounded-md bg-[#D4AF37] text-[#05060a]" onclick="openBookingModal('Deluxe Room')">Book</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Room card 3 -->
+          <article class="rounded-2xl overflow-hidden glass shadow-md">
+            <img src="fam.jpg" alt="family cabin" class="w-full h-56 obj-cover"/>
+            <div class="p-5">
+              <h4 class="font-semibold text-white text-lg">Family Cabin</h4>
+              <p class="text-sm text-gray-300 mt-2">Spacious cabin for families with extra beds and kitchenette.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div>
+                  <div class="text-sm text-gray-400">Starting from</div>
+                  <div class="font-semibold text-white">₹6,299 / night</div>
+                </div>
+                <button class="px-3 py-2 rounded-md bg-[#D4AF37] text-[#05060a]" onclick="openBookingModal('Family Cabin')">Book</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCES -->
+    <section id="experiences" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal" data-reveal>
+      <div class="text-center">
+        <h3 class="text-3xl font-playfair">Facilities & Experiences</h3>
+        <p class="text-gray-400 mt-2">Outdoor activities, gourmet dining & moments by the fire.</p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 glass rounded-2xl">
+          <h4 class="font-semibold text-white">Nature Walks & Trekking</h4>
+          <p class="text-gray-300 text-sm mt-2">Guided treks and bird-watching routes for nature lovers.</p>
+        </div>
+        <div class="p-6 glass rounded-2xl">
+          <h4 class="font-semibold text-white">Campfire Evenings</h4>
+          <p class="text-gray-300 text-sm mt-2">Live music, bonfire and local delicacies under the stars.</p>
+        </div>
+        <div class="p-6 glass rounded-2xl">
+          <h4 class="font-semibold text-white">Pool & Wellness</h4>
+          <p class="text-gray-300 text-sm mt-2">Sparkling pool, spa treatments and yoga sessions (on request).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-16 bg-[#04141a]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          <h3 class="text-3xl font-playfair">Gallery</h3>
+          <p class="text-sm text-gray-400">A glimpse of the resort</p>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <img loading="lazy" src="bonfire.jpg" alt="gallery1" class="w-full h-48 obj-cover rounded-lg shadow-md"/>
+          <img loading="lazy" src="riverrafting.jpg" alt="gallery2" class="w-full h-48 obj-cover rounded-lg shadow-md"/>
+          <img loading="lazy" src="waterfalls.jpg" alt="gallery3" class="w-full h-48 obj-cover rounded-lg shadow-md"/>
+          <img loading="lazy" src="flyingfox.jpg" alt="gallery4" class="w-full h-48 obj-cover rounded-lg shadow-md"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal" data-reveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-2xl font-playfair">Get in touch</h3>
+          <p class="text-gray-300 mt-2">Questions about booking, group events or corporate retreats? Drop us a message and our team will get back to you.</p>
+
+          <div class="mt-6 space-y-4 text-gray-300">
+            <div>
+              <div class="font-semibold text-white">Address</div>
+              <div class="text-sm">Rishikesh, Uttarakhand, India</div>
+            </div>
+            <div>
+              <div class="font-semibold text-white">Email</div>
+              <div class="text-sm">hello@thejunglemist.in</div>
+            </div>
+            <div>
+              <div class="font-semibold text-white">Phone</div>
+              <div class="text-sm">+91 84009 99966</div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <iframe class="w-full h-56 rounded-lg border border-white/5" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.892589504095!2d78.202042!3d30.183055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909274d1e3e8f3b%3A0x9c7c3e0f3f434c3b!2sThe%20Jungle%20Mist%20Resort!5e0!3m2!1sen!2sin!4v1702145678901!5m2!1sen!2sin" aria-hidden="false"></iframe>
+          </div>
+        </div>
+
+        <div>
+          <form id="contactForm" class="space-y-4 bg-[#02141a] p-6 rounded-2xl glass">
+            <div>
+              <label class="sr-only">Full name</label>
+              <input required name="name" type="text" placeholder="Full name" class="w-full p-3 rounded-md bg-transparent border border-white/6" />
+            </div>
+            <div>
+              <label class="sr-only">Email</label>
+              <input required name="email" type="email" placeholder="Email address" class="w-full p-3 rounded-md bg-transparent border border-white/6" />
+            </div>
+            <div>
+              <label class="sr-only">Message</label>
+              <textarea required name="message" rows="5" placeholder="Message" class="w-full p-3 rounded-md bg-transparent border border-white/6"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-sm text-gray-400">We reply within 24 hours</div>
+              <button type="submit" class="px-4 py-2 rounded-md bg-[#D4AF37] text-[#05060a]">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#00060a] border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-3">
+            <img src="main logo.jpeg" alt="logo" class="w-12 h-12 object-cover rounded-md"/>
+            <div>
+              <div class="font-semibold">The Jungle Mist Resort</div>
+              <div class="text-sm text-gray-400">Rishikesh • Uttarakhand</div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-400">© <span id="year"></span> The Jungle Mist Resort. All rights reserved.</div>
+
+          <div>
+            <a href="https://www.talentronaut.in/" target="_blank" rel="noopener" class="text-sm text-gray-300 hover:underline">Designed by Talentronaut Technologies</a>
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Talentronaut Icon -->
+    <a href="https://www.talentronaut.in/" target="_blank" rel="noopener" class="fixed right-5 bottom-8 z-50 floating-icon" aria-label="Talentronaut">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center shadow-lg glass border border-white/6">
+        <img src="logo.jpg" alt="talentronaut" class="w-10 h-10 rounded-full" />
+      </div>
+    </a>
+
+  </main>
+
+  <!-- BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-60 hidden items-center justify-center bg-black/60 p-4">
+    <div class="w-full max-w-3xl rounded-2xl bg-[#071826] p-6 glass">
+      <div class="flex items-start justify-between gap-4">
+        <h4 class="text-xl font-playfair">Book your stay</h4>
+        <button id="closeModal" class="p-2 rounded-md bg-white/2">✕</button>
+      </div>
+
+      <form id="bookingForm" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input name="name" required placeholder="Full name" class="p-3 rounded-md bg-transparent border border-white/6" />
+        <input name="email" required type="email" placeholder="Email" class="p-3 rounded-md bg-transparent border border-white/6" />
+        <input name="phone" required placeholder="Phone" class="p-3 rounded-md bg-transparent border border-white/6" />
+        <select name="roomType" required class="p-3 rounded-md bg-transparent border border-white/6">
+          <option value="Cottage - King">Cottage - King</option>
+          <option value="Deluxe Room">Deluxe Room</option>
+          <option value="Family Cabin">Family Cabin</option>
+        </select>
+        <input name="checkin" required type="date" class="p-3 rounded-md bg-transparent border border-white/6" />
+        <input name="checkout" required type="date" class="p-3 rounded-md bg-transparent border border-white/6" />
+        <textarea name="notes" placeholder="Special requests (optional)" class="p-3 rounded-md bg-transparent border border-white/6 md:col-span-2"></textarea>
+        <div class="md:col-span-2 flex items-center justify-between">
+          <div class="text-xs text-gray-400">No payment here — we'll contact you to confirm and take payment securely.</div>
+          <button type="submit" class="px-4 py-2 rounded-md bg-[#D4AF37] text-[#05060a]">Request Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // small helper for reveal animations
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('[data-reveal]').forEach(el=>{ setTimeout(()=> el.classList.add('show'), 200); el.classList.add('reveal'); });
+
+      // set year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // mobile menu toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      menuBtn.addEventListener('click', ()=> { mobileNav.classList.toggle('hidden'); });
+
+      // booking modal controls
+      const bookingModal = document.getElementById('bookingModal');
+      const bookingForm = document.getElementById('bookingForm');
+      const quickBooking = document.getElementById('quickBooking');
+
+      function openModal(){ bookingModal.classList.remove('hidden'); bookingModal.classList.add('flex'); }
+      function closeModal(){ bookingModal.classList.add('hidden'); bookingModal.classList.remove('flex'); }
+
+      document.getElementById('heroBook').addEventListener('click', openModal);
+      document.getElementById('bookNowTop').addEventListener('click', openModal);
+      document.getElementById('closeModal').addEventListener('click', closeModal);
+      bookingModal.addEventListener('click', function(e){ if(e.target === bookingModal) closeModal(); });
+
+      // book buttons
+      window.openBookingModal = function(room){
+        document.querySelector('#bookingForm [name=roomType]').value = room || 'Cottage - King';
+        openModal();
+      }
+
+      // handle booking submit (demo: just simulate)
+      bookingForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const data = new FormData(bookingForm);
+        // In real implementation: send to your backend API
+        alert('Thanks! Your booking request has been received. We will contact you shortly.');
+        closeModal();
+        bookingForm.reset();
+      });
+
+      quickBooking.addEventListener('submit', function(e){
+        e.preventDefault();
+        // small UX: open modal transferring values
+        const q = new FormData(quickBooking);
+        document.querySelector('#bookingForm [name=checkin]').value = q.get('checkin');
+        document.querySelector('#bookingForm [name=checkout]').value = q.get('checkout');
+        document.querySelector('#bookingForm [name=roomType]').value = q.get('room');
+        openModal();
+      });
+
+      // contact form
+      document.getElementById('contactForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        // In production, send to backend; here demo acknowledgement
+        alert('Thank you! We have received your message and will respond within 24 hours.');
+        e.target.reset();
+      });
+
+      // small accessibility: keyboard escape to close modal
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+    });
+  </script>
+
+  <!-- FONTS: Playfair Display & Poppins via Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style> .font-playfair{ font-family: 'Playfair Display', serif; } body, input, textarea, select, button { font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; } </style>
+</body>
+</html>
